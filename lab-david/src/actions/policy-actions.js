@@ -2,47 +2,47 @@
 
 import superagent from 'superagent';
 
-export const insSet = (insureds) => ({
-  type: 'INS_SET',
-  payload: insureds
+export const polSet = policies => ({
+  type: 'POL_SET',
+  payload: policies,
 })
 
-export const insCreate = insured => ({
-  type: 'INS_CREATE',
-  payload: insured,
+export const polCreate = policy => ({
+  type: 'POL_CREATE',
+  payload: policy,
 })
 
-export const insUpdate = insured => ({
-  type: 'INS_UPDATE',
-  payload: insured,
+export const polUpdate = policy => ({
+  type: 'POL_UPDATE',
+  payload: policy,
 })
 
-export const insDelete = insured => ({
-  type: 'INS_DELETE',
-  payload: insured,
+export const polDelete = policy => ({
+  type: 'POL_DELETE',
+  payload: policy,
 })
 
-export const insFetchRequest = () => dispatch => {
-  return superagent.get(`${__API_URL__}/api/insured`)
+export const polFetchRequest = () => dispatch => {
+  return superagent.get(`${__API_URL__}/api/lifepolicy`)
     .then(res => {
-      dispatch(insCreate(res.body));
+      dispatch(polSet(res.body));
       return res;
     })
 }
 
-export const insCreateRequest = insured => dispatch => {
-  return superagent.post(`${__API_URL__}/api/insured`)
-    .send(insured)
+export const polCreateRequest = policy => dispatch => {
+  return superagent.post(`${__API_URL__}/api/insured/${policy.primary_insuredId}/lifepolicy`)
+    .send(policy)
     .then(res => {
-      dispatch(insCreate(res.body));
+      dispatch(polCreate(res.body));
       return res;
     })
 }
 
-export const insDeleteRequest = insured => dispatch => {
-  return superagent.delete(`${__API_URL__}/api/insured/${insured._id}`)
+export const polDeleteRequest = policy => dispatch => {
+  return superagent.delete(`${__API_URL__}/api/${policy.primary_insuredId}/lifepolicy/${policy._id}`)
     .then(res => {
-      dispatch(insDelete(insured));
+      dispatch(polDelete(policy));
       return res;
     })
 }
