@@ -17,6 +17,14 @@ insuredRouter.get('/api/insured/:insuredId', (req, res, next) => {
     .catch(next);
 });
 
+insuredRouter.get('/api/insured', (req, res, next) => {
+  debug('GET: /api/insured');
+
+  Insured.find({})
+    .then(insureds => res.json(insureds))
+    .catch(next);
+});
+
 insuredRouter.post('/api/insured', jsonParser, (req, res, next) => {
   debug('POST: /api/insured');
 

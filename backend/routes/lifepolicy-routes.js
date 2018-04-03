@@ -21,6 +21,14 @@ lifepolicyRouter.get('/api/lifepolicy/:lifepolicyId', (req, res, next) => {
     });
 });
 
+lifepolicyRouter.get('/api/lifepolicy', (req, res, next) => {
+  debug('GET: /api/lifepolicy');
+
+  LifePolicy.find({})
+    .then(policies => res.json(policies))
+    .catch(next);
+});
+
 lifepolicyRouter.post('/api/insured/:insuredId/lifepolicy', jsonParser, (req, res, next) => {
   debug('POST: /api/insured/:insuredId/lifepolicy');
 
