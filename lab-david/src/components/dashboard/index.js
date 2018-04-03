@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    insureds: state.insured
+    insureds: state.ins
   }
 }
 

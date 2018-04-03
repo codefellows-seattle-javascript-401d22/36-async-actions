@@ -1,11 +1,21 @@
 'use strict';
 
 const validateIns = payload => {
-  if(!payload._id) throw new Error('VALIDATION ERROR: insured must have an id');
-  if(!payload.first_name) throw new Error('VALIDATION ERROR: insured must have a first name');
-  if(!payload.last_name) throw new Error('VALIDATION ERROR: insured must have a last name');
-  if(!payload.dateofbirth) throw new Error('VALIDATION ERROR: insured must have a date of birth');
-  if(payload.gender !== 'M' && payload.gender !== 'F') throw new Error('VALIDATION ERROR: insured gender must be M or F');
+  if(Array.isArray(payload)){
+    payload.forEach(item => {
+      if(!item._id) throw new Error('VALIDATION ERROR: insured must have an id');
+      if(!item.first_name) throw new Error('VALIDATION ERROR: insured must have a first name');
+      if(!item.last_name) throw new Error('VALIDATION ERROR: insured must have a last name');
+      if(!item.dateofbirth) throw new Error('VALIDATION ERROR: insured must have a date of birth');
+      if(item.gender !== 'M' && item.gender !== 'F') throw new Error('VALIDATION ERROR: insured gender must be M or F');
+    })
+  } else {
+    if(!payload._id) throw new Error('VALIDATION ERROR: insured must have an id');
+    if(!payload.first_name) throw new Error('VALIDATION ERROR: insured must have a first name');
+    if(!payload.last_name) throw new Error('VALIDATION ERROR: insured must have a last name');
+    if(!payload.dateofbirth) throw new Error('VALIDATION ERROR: insured must have a date of birth');
+    if(payload.gender !== 'M' && payload.gender !== 'F') throw new Error('VALIDATION ERROR: insured gender must be M or F');
+  }
 }
 
 export default (state=[], action) => {

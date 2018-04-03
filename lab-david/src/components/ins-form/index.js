@@ -11,7 +11,7 @@ export default class InsForm extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount(props){
+  componentWillReceiveProps(props){
     if(props.insured){
       this.setState(props.insured);
     }
@@ -66,14 +66,15 @@ export default class InsForm extends React.Component{
           id='male'
           value='M'
           onChange={this.handleChange} />
-        <label for='male'>M</label>
+        <label htmlFor='male'>M</label>
         <input
           name='gender'
           type='radio'
           id='female'
           value='F'
           onChange={this.handleChange} />
-        <label for='female'>F</label>
+        <label htmlFor='female'>F</label>
+        <button type='submit'>{this.props.buttonText}</button>
       </form>
     )
   }
