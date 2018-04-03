@@ -22,7 +22,7 @@ export const listDelete = list => ({
   payload: list,
 })
 
-export const listFetchRequest = () => dispatch => {
+export const listGrabRequest = () => dispatch => {
   return superagent.get(`${__API_URL__}/api/lists`)
     .then(res => {
       dispatch(listGrab(res.body));
