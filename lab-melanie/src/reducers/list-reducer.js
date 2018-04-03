@@ -2,7 +2,7 @@
 
 const validateList = payload => {
   if (!payload._id) throw new Error('VALIDATION ERROR: list must have an id');
-  if (!payload.title) throw new Error('VALIDATION ERROR: list must have a title');
+  if (!payload.name) throw new Error('VALIDATION ERROR: list must have a name');
 };
 
 export default (state=[], action) => {
