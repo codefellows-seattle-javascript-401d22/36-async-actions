@@ -25,7 +25,7 @@ export const insDelete = insured => ({
 export const insFetchRequest = () => dispatch => {
   return superagent.get(`${__API_URL__}/api/insured`)
     .then(res => {
-      dispatch(insCreate(res.body));
+      dispatch(insSet(res.body));
       return res;
     })
 }
