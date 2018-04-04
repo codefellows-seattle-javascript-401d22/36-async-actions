@@ -1,9 +1,17 @@
 import superagent from 'superagent';
 
-export const entreesFetch = (entrees) => ({
-  type: 'ENTREES_FETCH',
-  payload: entrees,
-});
+export const entreesFetch = (entrees) => {
+  console.log('entrees fetch: ', entrees);
+  return ({
+    type: 'ENTREES_FETCH',
+    payload: entrees,
+  });
+};
+
+// ({
+//   type: 'ENTREES_FETCH',
+//   payload: entrees,
+// });
 
 export const entreesByMenuFetch = (entrees) => ({
   type: 'ENTREES_BY_MENU_FETCH',
@@ -17,7 +25,7 @@ export const entreeFetch = (entree) => ({
 
 export const entreeCreate = (entree) => ({
   type: 'ENTREE_CREATE',
-  payload: {...entree, timestamp: new Date() },
+  payload: entree,
 });
 
 export const entreeUpdate = (entree) => ({
@@ -33,12 +41,22 @@ export const entreeDelete = (entree) => ({
 // export const entreeReset = () => ({ type: 'ENTREE_RESET' });
 
 export const entreesFetchRequest = () => (dispatch) => {
-  return superagent.get(`${__API_URL__}/api/menu/entrees`)
+  console.log('route hit');
+  return superagent.get(`${__API_URL__}/api/entrees`)
     .then(res => {
+      console.log('res: ', res);
       dispatch(entreesFetch(res.body));
       return res;
     });
 };
+
+// export const menusFetchRequest = () => (dispatch) => {
+//   return superagent.get(`${__API_URL__}/api/menu`)
+//     .then(res => {
+//       dispatch(menusFetch(res.body));
+//       return res;
+//     });
+// };
 
 export const entreesByMenuFetchRequest = (menu) => (dispatch) => {
   return superagent.get(`${__API_URL__}/api/menu/${menu._id}/entree`)

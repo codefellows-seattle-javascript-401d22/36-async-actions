@@ -1,9 +1,17 @@
 import superagent from 'superagent';
 
-export const menusFetch = (menus) => ({
-  type: 'MENUS_FETCH',
-  payload: menus,
-});
+// export const menusFetch = (menus) => ({
+//   type: 'MENUS_FETCH',
+//   payload: menus,
+// });
+
+export const menusFetch = (menus) => {
+  console.log('menus fetch: ', menus);
+  return ({
+    type: 'MENUS_FETCH',
+    payload: menus,
+  });
+};
 
 export const menuFetch = (menu) => ({
   type: 'MENU_FETCH',

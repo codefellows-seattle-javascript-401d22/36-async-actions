@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MenuForm from '../menu-form';
 import EntreeForm from '../entree-form';
+import EntreeItem from '../entree-item';
 import * as util from '../../lib/util';
 import * as menuActions from '../../actions/menu-actions';
 import * as entreeActions from '../../actions/entree-actions';
@@ -18,27 +19,24 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className='dashboard'>
-        <div className='menuDiv'>
-          <h2> Menu Form </h2>
-          <MenuForm onComplete={this.props.menuCreate} buttonText='Create a Menu' />
-          {this.props.menus.map(menu =>
-            <div key={menu._id}>
-              <p> ID: {menu._id}<br/>Name: {menu.name}<br/>Created At: {menu.timestamp}<br/>Entrees: {menu.entrees} </p>
-              <button onClick={() => this.props.menuDelete(menu)}>X</button>
-            </div>
-          )}
-        </div>
-        <div className='entreeDiv'>
-          <h2> Entree Form </h2>
-          <EntreeForm onComplete={this.props.entreeCreate} buttonText='Create an Entree' />
-          {this.props.entrees.map(entree =>
-            <div key={entree._id}>
-              <p> ID: {entree._id}<br/>Name: {entree.name}<br/>Price: ${entree.price}<br/>Menu ID: {entree.menuID} </p>
-              <button onClick={() => this.props.entreeDelete(entree)}>X</button>
-            </div>
-          )}
-        </div>
+      <div className='menuDiv'>
+        <h2> Menu Form </h2>
+        <MenuForm onComplete={this.props.menuCreate} buttonText='Create a Menu' />
+        {this.props.menus.map(menu =>
+          <div key={menu._id}>
+            <p> ID: {menu._id}<br/>Name: {menu.name}<br/>Created At: {menu.timestamp}<br/>Entrees: {menu.entrees} </p>
+            <button onClick={() => this.props.menuDelete(menu)}>X</button>
+          </div>
+        )}
+        <h2> Entree Form </h2>
+        <EntreeForm onComplete={this.props.entreeCreate} buttonText='Create an Entree' />
+        <EntreeItem entrees={this.props.entrees} />
+        {this.props.entrees.map(entree =>
+          <div key={entree._id}>
+            <p> ID: {entree._id}<br/>Name: {entree.name}<br/>Price: ${entree.price}<br/>Menu ID: {entree.menuID} </p>
+            <button onClick={() => this.props.entreeDelete(entree)}>X</button>
+          </div>
+        )}
       </div>
     );
   }

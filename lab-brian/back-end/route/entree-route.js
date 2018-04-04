@@ -9,6 +9,18 @@ const Entree = require('../model/entree.js');
 
 const entreeRouter = module.exports = new Router();
 
+entreeRouter.get('/api/entrees', function(req, res, next) {
+  debug('GET: /api/menu/entree');
+  debug('asfasf');
+  Entree.find()
+    .then(console.log('res: ', res))
+    .then( entree => res.json(entree))
+    .catch( err => {
+      err = createError(404, 'Not Found');
+      next(err);
+    });
+});
+
 // http POST :3000/api/menu/5a9ced3a6707472fa2474206/entree name=pizza price=20
 entreeRouter.post('/api/menu/:menuID/entree', jsonParser, function(req, res, next) {
   debug('POST: /api/menu/:menuID/entree');
@@ -51,14 +63,6 @@ entreeRouter.get('/api/menu/:menuID/entree', function(req, res, next) {
   debug('GET: /api/menu');
 
   Entree.find({ menuID: req.params.menuID })
-    .then( entrees => res.json(entrees))
-    .catch( err => next(err));
-});
-
-entreeRouter.get('/api/menu/entrees', function(req, res, next) {
-  debug('GET: /api/menu');
-
-  Entree.find({})
     .then( entrees => res.json(entrees))
     .catch( err => next(err));
 });
