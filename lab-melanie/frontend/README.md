@@ -24,14 +24,14 @@
 
 ## Installation
 #### Back-end
-1. This app uses the back-end code from a previous lab, [Lab 14: Two Resource API](https://github.com/melaniebcohen/14-two-resource-api/tree/master/melanie-lab). To start, download the files from that repository.
-2. `cd` to the repository directory and run `npm i`
+1. To start, download the files from this repository.
+2. `cd` to the `backend` directory and run `npm i`
 3. Use `npm run start` to run the app locally (make sure a local Mongo database is running). Alternatively, use the `npm run start-db` script also included in the `package.json` file.
 4. Verify your server is running using a local `.env` file before launching the front-end app.
 
 #### Front-end
 1. Once your back-end is running, download the files from this repository
-2. `cd` to the repository directory and run `npm i`
+2. `cd` to the `frontend` directory and run `npm i`
 3. Use `npm run watch` to run the app locally with a local `.env` file.
 4. Navigate to `localhost:<PORT>` to explore the app
 
