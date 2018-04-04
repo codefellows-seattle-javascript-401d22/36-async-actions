@@ -6,6 +6,15 @@
   "directories": {
     "lib": "lib"
   },
+  "scripts": {
+    "test": "DEBUG='entree*' jest",
+    "test-coverage": "DEBUG='entree*' jest --coverage",
+    "start": "DEBUG='entree*' node server.js",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
@@ -20,14 +29,5 @@
   "devDependencies": {
     "jest": "^22.4.3",
     "superagent": "^3.8.2"
-  },
-  "scripts": {
-    "test": "DEBUG='entree*' jest",
-    "test-coverage": "DEBUG='entree*' jest --coverage",
-    "start": "DEBUG='entree*' node server.js",
-    "lint": "eslint ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

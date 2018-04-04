@@ -5,6 +5,7 @@ const jsonParser = require('body-parser').json();
 const debug = require('debug')('entree:entree-route');
 const createError = require('http-errors');
 const Menu = require('../model/menu.js');
+const Entree = require('../model/entree.js');
 
 const entreeRouter = module.exports = new Router();
 
@@ -20,4 +21,44 @@ entreeRouter.post('/api/menu/:menuID/entree', jsonParser, function(req, res, nex
       err = createError(404, 'Not Found');
       next(err);
     });
+});
+
+entreeRouter.put('/api/menu/:menuID/entree/:entreeID', jsonParser, function(req, res, next) {
+  debug('PUT: /api/menu/:menuID/entree/:entreeID');
+  if (!req.body.name || !req.body.price) return next(createError(400, 'expected a request body name and price'));
+
+  Entree.findByIdAndUpdate(req.params.entreeID, req.body, {new: true})
+    .then( entree => res.json(entree))
+    .catch( err => {
+      if(err.name === 'ValidationError') return next(err);
+      next(createError(404, err.message));
+    });
+});
+
+entreeRouter.get('/api/menu/:menuID/entree/:entreeID', function(req, res, next) {
+  debug('GET: /api/menu/:menuID/entree/:entreeID');
+
+  Entree.findById(req.params.entreeID)
+    .then( entree => res.json(entree))
+    .catch( err => {
+      err = createError(404, 'Not Found');
+      next(err);
+    });
+});
+
+// http :3000/api/menu/:menuID/entree
+entreeRouter.get('/api/menu/:menuID/entree', function(req, res, next) {
+  debug('GET: /api/menu');
+
+  Entree.find({ menuID: req.params.menuID })
+    .then( entrees => res.json(entrees))
+    .catch( err => next(err));
+});
+
+entreeRouter.get('/api/menu/entrees', function(req, res, next) {
+  debug('GET: /api/menu');
+
+  Entree.find({})
+    .then( entrees => res.json(entrees))
+    .catch( err => next(err));
 });
