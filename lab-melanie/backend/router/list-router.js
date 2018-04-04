@@ -24,7 +24,10 @@ listRouter.get('/api/list', (req, res, next) => {
 
   List.find({})
     .then(lists => res.json(lists))
-    .catch(next);
+    .catch(err => {
+      console.error(err)
+      next();
+    });
 });
 
 listRouter.post('/api/list', jsonParser, (req, res, next) => {
