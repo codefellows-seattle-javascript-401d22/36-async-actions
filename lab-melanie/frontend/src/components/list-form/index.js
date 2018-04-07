@@ -22,6 +22,7 @@ export default class ListForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let result = this.props.onComplete(this.state);
+    this.setState({ name: '' });
 
     if (result instanceof Promise) {
       result
@@ -39,6 +40,7 @@ export default class ListForm extends Component {
   render() {
     return (
       <form className='list-form' onSubmit={this.handleSubmit}>
+
         <input
           name='name'
           type='text'
