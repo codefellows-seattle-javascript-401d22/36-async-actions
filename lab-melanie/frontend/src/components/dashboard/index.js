@@ -25,19 +25,21 @@ class Dashboard extends Component {
           placeholderText='create a list'
         />
 
-        {this.props.lists.map(list =>
-          <div className='list' key={list._id}>
-            <p>{list.name}</p>
-            <ListForm 
-              onComplete={this.props.listUpdate}
-              list={list}
-              buttonText='update list'
-              placeholderText={list.name}
-            />
-            
-            <button onClick={() => this.props.listDelete(list)}>X</button>
-          </div>
-        )}
+        {this.props.lists.length > 0 ?
+          this.props.lists.map(list =>
+            <div className='list' key={list._id}>
+              <p>{list.name}</p>
+              <ListForm 
+                onComplete={this.props.listUpdate}
+                list={list}
+                buttonText='update list'
+                placeholderText={list.name}
+              />
+              
+              <button onClick={() => this.props.listDelete(list)}>X</button>
+            </div>)
+          : undefined}
+
       </section>
     );
   }

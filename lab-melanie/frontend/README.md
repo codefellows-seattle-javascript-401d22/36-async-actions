@@ -54,3 +54,7 @@ This app also uses `Redux` with the following reducers. Action creators are buil
 * `LIST_CREATE`
 * `LIST_UPDATE`
 * `LIST_DELETE`
+
+## April 7 Updates
+* Edited dashboard rendering to only render a list when list items are present
+* UI state is cleared once 'Create List' is selected
