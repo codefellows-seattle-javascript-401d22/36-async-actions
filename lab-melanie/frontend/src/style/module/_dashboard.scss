@@ -1,0 +1,37 @@
+.dashboard {
+  width: 60vw;
+  border: 1.5px $primary-color solid;
+  border-radius: $border-radius;
+  margin: 3vw auto;
+  padding: $gutter-sm;
+  background: $secondary-color;
+
+  h2 {
+    font-size: $font-large/2;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: $font-large/2.5;
+    margin-top: $gutter-sm;
+  }
+
+  .list {
+    button {
+      display: inline;
+      padding: .6vw .9vw .6vw .9vw;
+      margin-left: $gutter-sm/3;
+    }
+
+    input {
+      display: inline-block;
+      padding: .5vw;
+      width: 20vw;
+    }
+
+    form {
+      display: inline;
+    }
+  
+  }
+}
