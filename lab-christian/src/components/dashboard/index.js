@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import ListForm from '../list-form';
+import ListForm from '../listform/index';
 import * as util from '../../lib/util';
 import * as listActions from '../../actions/list-actions';
 
@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    this.props.listGrab();
+    this.props.listSet();
   }
 
 
@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   listCreate: (list) => dispatch(listActions.listCreateRequest(list)),
   listDelete: (list) => dispatch(listActions.listDeleteRequest(list)),
-  listGrab: () => dispatch(listActions.listsGrabRequest()),
+  listSet: () => dispatch(listActions.listsSetRequest()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

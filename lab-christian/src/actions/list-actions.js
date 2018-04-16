@@ -2,8 +2,8 @@
 
 import superagent from 'superagent';
 
-export const listGrab = lists => ({
-  type: 'LIST_GRAB',
+export const listSet = lists => ({
+  type: 'LIST_SET',
   payload: lists,
 })
 
@@ -22,10 +22,10 @@ export const listDelete = list => ({
   payload: list,
 })
 
-export const listGrabRequest = () => dispatch => {
+export const listSetRequest = () => dispatch => {
   return superagent.get(`${__API_URL__}/api/lists`)
     .then(res => {
-      dispatch(listGrab(res.body));
+      dispatch(listSet(res.body));
       return res;
     })
 }
