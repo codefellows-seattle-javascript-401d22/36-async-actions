@@ -30,7 +30,7 @@ export const listSetRequest = () => dispatch => {
     })
 }
 
-export const listCreateRequest = (list) = dispatch => {
+export const listCreateRequest = (list) => dispatch => {
   return superagent.post(`${__API_URL__}/api/lists`)
     .send(list)
     .then(res => {
@@ -39,7 +39,7 @@ export const listCreateRequest = (list) = dispatch => {
     })
 }
 
-export const listDeleteRequest = (list) = dispatch => {
+export const listDeleteRequest = (list) => dispatch => {
   return superagent.delete(`${__API_URL__}/api/list/${list._id}`)
     .then(res => {
       dispatch(listDelete(list));

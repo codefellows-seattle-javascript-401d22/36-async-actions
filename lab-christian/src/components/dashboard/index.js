@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
           onComplete={this.props.listCreate}
           buttonText='Create List'
         />
-        {this.props.lists.map(list => 
+        {this.props.lists && this.props.lists.map(list => 
           <div key={list._id}>
             <p>{list.title}</p>
             <button onClick={() => this.props.listDelete(list)}>X</button>
@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   listCreate: (list) => dispatch(listActions.listCreateRequest(list)),
   listDelete: (list) => dispatch(listActions.listDeleteRequest(list)),
-  listSet: () => dispatch(listActions.listsSetRequest()),
+  listSet: () => dispatch(listActions.listSetRequest()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
